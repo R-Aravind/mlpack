@@ -23,6 +23,8 @@ set(SOURCES
   mean_squared_error_impl.hpp
   mean_squared_logarithmic_error.hpp
   mean_squared_logarithmic_error_impl.hpp
+  multilabel_margin_loss.hpp
+  multilabel_margin_loss_impl.hpp
   negative_log_likelihood.hpp
   negative_log_likelihood_impl.hpp
   log_cosh_loss.hpp
