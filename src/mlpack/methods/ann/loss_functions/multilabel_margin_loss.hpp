@@ -22,12 +22,50 @@
 namespace mlpack {
 namespace ann /** Artificial Neural Network. **/ {
 
+template <
+    typename InputDataType = arma::mat,
+    typename OutputDataType = arma::mat
+>
+class MultiLabelMarginLoss
+{
+ public:
+  MultiLabelMarginLoss(const bool reduction = true);
+ 
+  template<typename InputType, typename TargetType>
+  typename InputType::elem_type Forward(const InputType& input,
+                                       const TargetType& target);
+
+  template<typename InputType, typename TargetType>
+  void Backward(const InputType& input,
+                const TargetType& target,
+                OutputType& output);
+
+  //! Get the output parameter.
+  OutputDataType& OutputParameter() const { return outputParameter; }
+  //! Modify the output parameter.
+  OutputDataType& OutputParameter() { return outputParameter; }
+
+  //! Get the type of reduction used.
+  bool Reduction() const { return reduction; }
+  //! Modify the type of reduction used.
+  bool& Reduction() { return reduction; }
+
+  /**
+   * Serialize the layer.
+   */
+  template<typename Archive>
+  void serialize(Archive& ar, const unsigned int /* version */);
+
+ private:
+  //! Locally-stored output parameter object.
+  OutputDataType outputParameter;
+
+  //! The boolean value that tells if reduction is sum or mean.
+  bool reduction;
+
+} // class MultiLabelMarginLoss
 
 } // namespace ann
 } // namespace mlpack
 
 #endif
-
-
-
-
