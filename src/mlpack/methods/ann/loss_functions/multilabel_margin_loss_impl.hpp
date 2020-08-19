@@ -12,11 +12,46 @@
 #ifndef MLPACK_METHODS_ANN_LOSS_FUNCTION_MULTILABEL_MARGIN_LOSS_IMPL_HPP
 #define MLPACK_METHODS_ANN_LOSS_FUNCTION_MULTILABEL_MARGIN_LOSS_IMPL_HPP
 
+// In case it hasn't been included.
 #include "multilabel_margin_loss.hpp"
 
 namespace mlpack {
 namespace ann /** Artificial Neural Network. **/ {
 
+template<typename InputDataType, typename OutputDataType>
+MultiLabelMarginLoss<InputDataType, OutputDataType>::
+MultiLabelMarginLoss(const bool reduction) : reduction(reduction)
+{
+  // Nothing to do here.
+}
+
+template<typename InputDataType, typename OutputDataType>
+template<typename InputType, typename TargetType>
+typename InputType::elem_type
+MultiLabelMarginLoss<InputDataType, OutputDataType>::Forward(
+    const InputType& input, const TargetType& target)
+{
+  // TODO
+}
+
+template<typename InputDataType, typename OutputDataType>
+template<typename InputType, typename TargetType, typename OutputType>
+void MultiLabelMarginLoss<InputDataType, OutputDataType>::Backward(
+  const InputType& input,
+  const TargetType& target,
+  OutputType& output)
+{
+  // TODO
+}
+
+template<typename InputDataType, typename OutputDataType>
+template<typename Archive>
+void MultiLabelMarginLoss<InputDataType, OutputDataType>::serialize(
+  Archive& ar,
+  const unsigned int /* version */)
+{
+  ar & BOOST_SERIALIZATION_NVP(reduction)
+}
 
 } // namespace ann
 } // namespace mlpack

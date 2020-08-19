@@ -68,4 +68,7 @@ class MultiLabelMarginLoss
 } // namespace ann
 } // namespace mlpack
 
+// include implementation.
+#include "multilabel_margin_loss_impl.hpp"
+
 #endif
