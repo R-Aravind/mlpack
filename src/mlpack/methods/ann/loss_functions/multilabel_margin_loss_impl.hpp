@@ -31,7 +31,31 @@ typename InputType::elem_type
 MultiLabelMarginLoss<InputDataType, OutputDataType>::Forward(
     const InputType& input, const TargetType& target)
 {
-  // TODO
+  typename InputType::elem_type target_idx, input_target, i, j, lossSum = 0;
+
+  for (i = 0; i < input.n_elem; i++)
+  {
+      target_idx = i;
+      input_target = input[target_idx];
+  
+    if (target[i] == 1)
+    {
+      for (j = 0; j < input.n_elem; j++)
+      {
+        if (target[j] == 0)
+        {
+          typename InputType::elem_type z = 1 - (input_target - input[j]);
+          if (z > 0)
+            lossSum += z;
+        }
+      }
+    } 
+  }
+  
+  if (reduction)
+    return (lossSum);
+  
+  return (lossSum/ input.n_elem);
 }
 
 template<typename InputDataType, typename OutputDataType>
